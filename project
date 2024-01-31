@@ -1,0 +1,90 @@
+function sumMultiples(limit) {
+  let sum = 0;
+  for (let i = 1; i < limit; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+      sum += i;
+    }
+  }
+  return sum;
+}
+
+function sumEvenFibonacci(limit) {
+  let sum = 0;
+  let a = 1;
+  let b = 2;
+
+  while (a <= limit) {
+    if (a % 2 === 0) {
+      sum += a;
+    }
+
+    let temp = a + b;
+    a = b;
+    b = temp;
+  }
+
+  return sum;
+}
+
+function largestPrimeFactor(number) {
+  let factor = 2;
+
+  while (number > 1) {
+    if (number % factor === 0) {
+      number /= factor;
+    } else {
+      factor++;
+    }
+  }
+
+  return factor;
+}
+
+function isPalindrome(num) {
+  const strNum = num.toString();
+  return strNum === strNum.split("").reverse().join("");
+}
+
+function largestPalindromeProduct() {
+  let largestPalindrome = 0;
+
+  for (let i = 100; i < 1000; i++) {
+    for (let j = 100; j < 1000; j++) {
+      const product = i * j;
+      if (isPalindrome(product) && product > largestPalindrome) {
+        largestPalindrome = product;
+      }
+    }
+  }
+
+  return largestPalindrome;
+}
+
+function smallestMultiple() {
+  let number = 2520; // Starting from the given example
+  let found = false;
+
+  while (!found) {
+    let divisible = true;
+    for (let i = 11; i <= 20; i++) {
+      if (number % i !== 0) {
+        divisible = false;
+        break;
+      }
+    }
+
+    if (divisible) {
+      found = true;
+    } else {
+      number += 2520; // Increment by the example value
+    }
+  }
+
+  return number;
+}
+
+console.log("1. Sum of multiples of 3 or 5 below 1000:", sumMultiples(1000));
+console.log("2. Sum of even Fibonacci numbers below 4 million:", sumEvenFibonacci(4000000));
+console.log("3. Largest prime factor of 600851475143:", largestPrimeFactor(600851475143));
+console.log("4. Largest palindrome product of two 3-digit numbers:", largestPalindromeProduct());
+console.log("5. Smallest multiple divisible by numbers 1 to 20:", smallestMultiple());
